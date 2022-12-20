@@ -1,7 +1,7 @@
 # Projet_Java
 **Projet Empreinte Carbone**
 
-Yang YANG & Ningxin YE
+Yang YANG & Ningxin YE & Yang YANG 's friends
 
 MIAGE groupe 3
 
