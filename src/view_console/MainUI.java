@@ -56,7 +56,7 @@ public class MainUI {
             kilomAnnee = readInt();
         }
         Transport transport = new Transport(true, taille=='P'? Taille.P:Taille.G, kilomAnnee, amorti);
-        user.setTransport(transport);
+        user.addTransport(transport);
     }
 
     public char readKey() {
