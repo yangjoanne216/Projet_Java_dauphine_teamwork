@@ -20,6 +20,14 @@ public class BienNumerique extends BienConso{
         this.impact=IMPACT_USAGE_SOBRE+ IMPACT_NIVEAU_SOBRE;
     }
 
+
+    public static double getInfoMoyenne() {
+        return 1180;
+    }
+    public double comparerAvecMoyen(){
+        return this.impact-getInfoMoyenne();
+    };
+
     public BienNumerique(boolean usage_intensif, boolean hautNiveau_Equipement) {
         this.usage_intensif = usage_intensif;
         this.hautNiveau_Equipement = hautNiveau_Equipement;

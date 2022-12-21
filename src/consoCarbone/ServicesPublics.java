@@ -5,6 +5,14 @@ public class ServicesPublics extends ConsoCarbone{
     private ServicesPublics(){
         this.impact=1.5;
     }
+
+    public static double getInfoMoyenne() {
+        return 1.5;
+    }
+    public double comparerAvecMoyen(){
+        return 0;
+    };
+
     public static  ServicesPublics getServicesPublics(){
         return servicesPublics;
     }

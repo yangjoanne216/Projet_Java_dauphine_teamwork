@@ -26,6 +26,12 @@ public class Habillement extends BienConso{
         }
         return impact;
     }
+    public static double getInfoMoyenne() {
+        return 763;
+    }
+    public double comparerAvecMoyen(){
+        return this.impact-getInfoMoyenne();
+    };
 
     public double getImpact(Categorie categorie){
         return multiplicationDeuxTableaux(categorie.getCat_coeff(),nombre_habillement[categorie.getId()]);

@@ -9,6 +9,13 @@ public class Logement extends ConsoCarbone{
         this.superficie=0;
         this.impact=0;
     }
+
+
+    public static double getInfoMoyenne() {
+        return 2706;
+    }
+
+
     public Logement(int superficie, CE ce) {
         if(superficie<0){
             throw new RuntimeException("la superfices de logement ne doit pas être négative");

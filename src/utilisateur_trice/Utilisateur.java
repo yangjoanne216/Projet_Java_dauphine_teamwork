@@ -3,6 +3,8 @@ package utilisateur_trice;
 import consoCarbone.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Utilisateur {
@@ -66,6 +68,8 @@ public class Utilisateur {
         System.out.println(habillement);
         System.out.println("----------------Total-------------------");
         System.out.println("Au total, vous avez une empreinte carbone de "+String.format("%.6f",this.calculerEmpreinte())+" TCO2eq."+"\n");
+        System.out.println("--------------getRecommantation----------------");
+        System.out.println(getRecommandation());
     }
 
     public double calculerImpactDeLogementsTotal(){
@@ -82,6 +86,14 @@ public class Utilisateur {
             impactTransports = impactTransports+transport.getImpact();
         }
         return impactTransports;
+    }
+
+    public double comparerAvecMoyenLogements(){
+        return calculerImpactDeLogementsTotal()-Logement.getInfoMoyenne();
+    }
+
+    public double comparerAvecMoyenTransports(){
+        return  calculerImpactDeTransportTotal()-Transport.getInfoMoyenne();
     }
 
 
@@ -141,5 +153,30 @@ public class Utilisateur {
 
     public void addTransport(Transport transport) {
         this.transports.add(transport);
+    }
+
+    public  String  getRecommandation(){
+        List<String> superieurAMoyen=new ArrayList<>();
+        if(alimentation.comparerAvecMoyen()>0){
+            superieurAMoyen.add("alimentation");
+        }
+        if(autreBien.comparerAvecMoyen()>0){
+            superieurAMoyen.add("autreBien");
+        }
+        if(bienNumerique.comparerAvecMoyen()>0){
+            superieurAMoyen.add("bienNumerique");
+        }
+        if(habillement.comparerAvecMoyen()>0){
+            superieurAMoyen.add("habillement");
+        }
+        if(comparerAvecMoyenTransports()>0){
+            superieurAMoyen.add("Transports");
+        }
+        if(comparerAvecMoyenLogements()>0){
+            superieurAMoyen.add("Logements");
+        }
+        return "Dans les aspects suivants, votre émission dépasse le niveau moyen des Français : " + superieurAMoyen + " ,j'espère que vous pourrez y prêter attention!";
+
+
     }
 }

@@ -24,7 +24,7 @@ public class main {
         System.out.println(b1);
 
         System.out.println("\n" +"Test Class Transport");
-        Transport t1 = new Transport(true, Taille.P, 10, 3);
+        Transport t1 = new Transport(true, Taille.P, 100000000, 3);
         System.out.println(t1);
 
         System.out.println("\n"+"Test Class ServicesPublics");
@@ -44,5 +44,7 @@ public class main {
         u1.addLogement(l2);
         u1.addTransport(t1);
         u1.detaillerEmpreinte();
+
+
     }
 }

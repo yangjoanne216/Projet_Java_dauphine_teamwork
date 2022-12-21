@@ -21,6 +21,16 @@ public class Alimentation extends ConsoCarbone {
         this.txBoeuf=0.5;
         this.impact=COEF_BOEUF * txBoeuf + COEF_VOLAILLE * (1 - txVege - txBoeuf) + COEF_VEGE * txVege;;
     }
+
+
+    public static double getInfoMoyenne() {
+        return 2353;
+    }
+
+    public double comparerAvecMoyen() {
+        return getImpact()-getInfoMoyenne();
+    }
+
     public double getTxBoeuf() {
         return txBoeuf;
     }

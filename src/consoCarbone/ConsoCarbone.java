@@ -5,6 +5,7 @@ public abstract class ConsoCarbone implements Comparable<ConsoCarbone>   {
     protected int id;
     protected double impact;
 
+
     public ConsoCarbone() {
         this.id = nbConsoCarbone++;
     }
@@ -32,7 +33,7 @@ public abstract class ConsoCarbone implements Comparable<ConsoCarbone>   {
 //        this.impact=impact;
 //    }
 
-//    public abstract double getInfoMoyenne();
+
     @Override
     public int compareTo(ConsoCarbone o) {
         return (int)(this.impact-o.impact);
