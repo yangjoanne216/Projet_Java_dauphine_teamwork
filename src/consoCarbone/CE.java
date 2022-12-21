@@ -15,4 +15,20 @@ public enum CE {
     public double getAlpha(){
         return this.alpha;
     }
+
+    public static CE getCEFromChar(char c) {
+        // to upper case
+        if(c >= 97)
+            c -= 32;
+        switch (c){
+            case 'A': return CE.A;
+            case 'B': return CE.B;
+            case 'C': return CE.C;
+            case 'D': return CE.D;
+            case 'E': return CE.E;
+            case 'F': return CE.F;
+            case 'G': return CE.G;
+        }
+        return CE.A;
+    }
 }
