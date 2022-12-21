@@ -127,16 +127,16 @@ public class Utilisateur {
         this.bienNumerique = bienNumerique;
     }
 
-    public List<Logement> getLogements() {
-        return logements;
+    public Logement[] getLogements() {
+        return logements.toArray(new Logement[0]);
     }
 
     public void addLogement(Logement logement) {
         this.logements.add(logement);
     }
 
-    public List<Transport> getTransports() {
-        return transports;
+    public Transport[] getTransports() {
+        return transports.toArray(new Transport[0]);
     }
 
     public void addTransport(Transport transport) {
