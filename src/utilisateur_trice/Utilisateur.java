@@ -15,7 +15,7 @@ public class Utilisateur {
 
 
     //默认的值为0
-    private Utilisateur(){
+    public Utilisateur(){
         this.alimentation =  new Alimentation(0,1);
         this.autreBien = new AutreBien();
         this.logement = new Logement();

@@ -8,10 +8,10 @@ import java.util.Scanner;
 
 public class MainUI {
 
-    User user;
+    Utilisateur user;
 
     public MainUI() {
-        user = new User();
+        user = new Utilisateur();
     }
 
     public String Menu() {
@@ -56,7 +56,7 @@ public class MainUI {
             kilomAnnee = readInt();
         }
         Transport transport = new Transport(true, taille=='P'? Taille.P:Taille.G, kilomAnnee, amorti);
-        System.out.println(transport);
+        user.setTransport(transport);
     }
 
     public char readKey() {
@@ -72,7 +72,7 @@ public class MainUI {
         if(sc.hasNextInt()) {
             return sc.nextInt();
         }
-        return 0;
+        return -1;
     }
 
     public void start() {
@@ -84,7 +84,7 @@ public class MainUI {
             choise = readKey();
             switch (choise){
                 case '0':
-                    System.out.println("show info");
+                    user.detaillerEmpreinte();
                     System.out.println("-------------");
                     System.out.print("c to continue\n> ");
                     while(this.readKey() != 'c'){
@@ -92,7 +92,8 @@ public class MainUI {
                     }
                     break;
                 case '1':
-                    System.out.println("Add 1");
+                    this.addCar();
+                    System.out.println("Succeed");
                     break;
                 case '2':
                     System.out.println("Add 2");
