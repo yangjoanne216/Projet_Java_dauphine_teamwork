@@ -108,7 +108,7 @@ public class MainUI {
             s = readInt();
         }
         // CE
-        System.out.print("Le CE de votre logement:\n> ");
+        System.out.print("Le CE de votre logement (A-G):\n> ");
         char ce = readKey();
         if(ce >= 97) {ce -= 32;} // to upper case
         while(ce<65 || ce >=65+7){
@@ -123,7 +123,10 @@ public class MainUI {
     public char readKey() {
         Scanner sc = new Scanner(System.in);
         if(sc.hasNext()) {
-            return sc.next().charAt(0);
+            String line = sc.next();
+            if(line.length()>1)
+                return ' ';
+            return line.charAt(0);
         }
         return ' ';
     }
