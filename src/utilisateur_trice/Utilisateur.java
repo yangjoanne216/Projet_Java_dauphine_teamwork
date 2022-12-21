@@ -4,23 +4,23 @@ import consoCarbone.*;
 
 public class Utilisateur {
     private Alimentation alimentation;
-    private BienConso bienConso;
+    private AutreBien autreBien;
     private Logement logement;
     private Transport transport;
     private ServicesPublics servicesPublics;
 
     private Habillement habillement;
 
-    public Utilisateur(Alimentation a,BienConso b,Logement l, Transport t,ServicesPublics s,Habillement h){
+    public Utilisateur(Alimentation a, AutreBien b, Logement l, Transport t, ServicesPublics s, Habillement h){
         this.alimentation=a;
-        this.bienConso=b;
+        this.autreBien =b;
         this.logement=l;
         this.transport=t;
         this.servicesPublics=s;
         this.habillement=h;
     }
     public double calculerEmpreinte(){
-        return alimentation.getImpact()+bienConso.getImpact()+ logement.getImpact()+ transport.getImpact()+servicesPublics.getImpact()+habillement.getImpact();
+        return alimentation.getImpact()+ autreBien.getImpact()+ logement.getImpact()+ transport.getImpact()+servicesPublics.getImpact()+habillement.getImpact();
     }
     public void detaillerEmpreinte(){
         System.out.println("Volià des informations sur votre empreinte carbon");
@@ -28,7 +28,7 @@ public class Utilisateur {
         System.out.println("--------------1.Alimentation---------------------");
         System.out.println(alimentation);
         System.out.println("--------------2.BienConsommé---------------------");
-        System.out.println(bienConso);
+        System.out.println(autreBien);
         System.out.println("----------------3.logement------------------------");
         System.out.println(logement);
         System.out.println("----------------4.transport------------------------");

@@ -17,7 +17,7 @@ public class main {
         int difference = a1.compareTo(l1);
         System.out.println("Écart d'émissions de carbone entre le logement et l'alimentation : "+difference);
         System.out.println("\n" +"Test Class BienConso");
-        BienConso b1 = new BienConso(100);
+        AutreBien b1 = new AutreBien(100);
         System.out.println(b1);
 
         System.out.println("\n" +"Test Class Transport");
