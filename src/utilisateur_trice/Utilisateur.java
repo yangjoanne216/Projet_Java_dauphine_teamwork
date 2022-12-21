@@ -11,14 +11,30 @@ public class Utilisateur {
 
     private Habillement habillement;
 
-    public Utilisateur(Alimentation a, AutreBien b, Logement l, Transport t, ServicesPublics s, Habillement h){
+    private BienNumerique bienNumerique;
+
+
+    //默认的值为0
+    private Utilisateur(){
+        this.alimentation =  new Alimentation(0,1);
+        this.autreBien = new AutreBien();
+        this.logement = new Logement();
+        this.transport=new Transport();
+        this.servicesPublics = ServicesPublics.getServicesPublics();
+        this.habillement = new Habillement();
+        this.bienNumerique = new BienNumerique();
+    }
+
+    public Utilisateur(Alimentation a, AutreBien b, Logement l, Transport t, ServicesPublics s, Habillement h, BienNumerique bn){
         this.alimentation=a;
         this.autreBien =b;
         this.logement=l;
         this.transport=t;
         this.servicesPublics=s;
         this.habillement=h;
+        this.bienNumerique=bn;
     }
+
     public double calculerEmpreinte(){
         return alimentation.getImpact()+ autreBien.getImpact()+ logement.getImpact()+ transport.getImpact()+servicesPublics.getImpact()+habillement.getImpact();
     }
@@ -41,4 +57,59 @@ public class Utilisateur {
         System.out.println("Au total, vous avez une empreinte carbone de "+String.format("%.6f",this.calculerEmpreinte())+" TCO2eq."+"\n");
     }
 
+    public Alimentation getAlimentation() {
+        return alimentation;
+    }
+
+    public void setAlimentation(Alimentation alimentation) {
+        this.alimentation = alimentation;
+    }
+
+    public AutreBien getAutreBien() {
+        return autreBien;
+    }
+
+    public void setAutreBien(AutreBien autreBien) {
+        this.autreBien = autreBien;
+    }
+
+    public Logement getLogement() {
+        return logement;
+    }
+
+    public void setLogement(Logement logement) {
+        this.logement = logement;
+    }
+
+    public Transport getTransport() {
+        return transport;
+    }
+
+    public void setTransport(Transport transport) {
+        this.transport = transport;
+    }
+
+    public ServicesPublics getServicesPublics() {
+        return servicesPublics;
+    }
+
+    public void setServicesPublics(ServicesPublics servicesPublics) {
+        this.servicesPublics = servicesPublics;
+    }
+
+    public Habillement getHabillement() {
+        return habillement;
+    }
+
+    public void setHabillement(Habillement habillement) {
+        this.habillement = habillement;
+    }
+
+    public BienNumerique getBienNumerique() {
+        return bienNumerique;
+    }
+
+    public void setBienNumerique(BienNumerique bienNumerique) {
+        this.bienNumerique = bienNumerique;
+    }
 }

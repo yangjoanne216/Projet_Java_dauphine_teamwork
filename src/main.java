@@ -12,7 +12,7 @@ public class main {
         System.out.println("\n" +"Test Class Alimentation");
         Alimentation a1 = new Alimentation(0.5, 0.3);
         System.out.println(a1.getImpact());
-        Alimentation.getInfoAverage();
+        Alimentation.printInfoMoyen();
 
         int difference = a1.compareTo(l1);
         System.out.println("Écart d'émissions de carbone entre le logement et l'alimentation : "+difference);
@@ -31,8 +31,9 @@ public class main {
         int[][] nombre_habillement={{10,5},{5},{20,5,3},{2,2,2,3},{2,1,1},{2,2},{2,1,1}};
         Habillement h1 = new Habillement();
 
+        BienNumerique bn= new BienNumerique();
         System.out.println("\n"+"Test Class utilisateur");
-        Utilisateur u1=new Utilisateur(a1,b1,l1,t1,sv,h1);
+        Utilisateur u1=new Utilisateur(a1,b1,l1,t1,sv,h1,bn);
         u1.detaillerEmpreinte();
     }
 }
