@@ -7,9 +7,9 @@ public class Alimentation extends ConsoCarbone {
     private static final double COEF_VEGE = 0.9;
     public Alimentation(double txBoeuf, double txVege) {
         super();
-        if(txBoeuf<0 || txBoeuf>1||txVege<0||txVege>1)
+        if(txBoeuf<0 || txBoeuf>1||txVege<0||txVege>1||(1-txBoeuf-txVege)<0||(1-txBoeuf-txVege)>1)
         {
-            throw new RuntimeException("txVege et txBeuf doivent être compris entre 0 et 1");
+            throw new RuntimeException("txVege,txBeuf et txVolaille=(1-txBoeuf-txVege) doivent être compris entre 0 et 1");
         }
         this.txBoeuf = txBoeuf;
         this.txVege = txVege;
@@ -17,9 +17,9 @@ public class Alimentation extends ConsoCarbone {
     }
     public Alimentation(){
         super();
-        this.txVege=0;
-        this.txBoeuf=0;
-        this.impact=0;
+        this.txVege=0.5;
+        this.txBoeuf=0.5;
+        this.impact=COEF_BOEUF * txBoeuf + COEF_VOLAILLE * (1 - txVege - txBoeuf) + COEF_VEGE * txVege;;
     }
     public double getTxBoeuf() {
         return txBoeuf;
@@ -33,7 +33,7 @@ public class Alimentation extends ConsoCarbone {
     public void setTxVege(double txVege) {
         this.txVege = txVege;
     }
-    public static void getInfoAverage(){
+    public static void printInfoMoyen(){
         System.out.println(
                 "l'empreinte carbone moyenne d'un.e français.e \n"+
                 "pour les Boissons : 263 kg eq CO2/an\n" +
@@ -46,12 +46,5 @@ public class Alimentation extends ConsoCarbone {
         return "Alimentation : id =" + id +"\n"+"Le pourcentage de bœuf dans votre alimentation : " + txBoeuf+"\n" +
                 "Le pourcentage de légumes dans votre alimentation : "+txVege+"\n"+
                 "l'impact de votre alimentation en terme d'émissions de GES : "+String.format("%.6f",impact)+" TCO2eq."+"\n";
-    }
-
-    public String toString(int i) {
-        return "Alimentation : id =" + id +"\n"+"Le pourcentage de bœuf dans votre alimentation : " + txBoeuf+"\n" +
-                "Le pourcentage de légumes dans votre alimentation : "+txVege+"\n"+
-                "l'impact de votre alimentation en terme d'émissions de GES : "+String.format("%.6f",impact)+" TCO2eq."+"\n";
-
     }
 }

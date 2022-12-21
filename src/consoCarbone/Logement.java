@@ -3,6 +3,12 @@ package consoCarbone;
 public class Logement extends ConsoCarbone{
     private int superficie;
     private CE ce;
+    public Logement(){
+        super();
+        this.ce = CE.A;
+        this.superficie=0;
+        this.impact=0;
+    }
     public Logement(int superficie, CE ce) {
         if(superficie<0){
             throw new RuntimeException("la superfices de logement ne doit pas être négative");
@@ -23,7 +29,7 @@ public class Logement extends ConsoCarbone{
     public void setCe(CE ce) {
         this.ce = ce;
     }
-    public static void getInfoAverage(){
+    public static void printInfoMoyen(){
         System.out.println( "l'empreinte carbone moyenne d'un.e français.e\n"+
                 "pour les equipements des logements : 335 kg eq CO2/an\n" +
                 "pour les constructions et les gros entretiens : 675 kg eq CO2/an\n"+
