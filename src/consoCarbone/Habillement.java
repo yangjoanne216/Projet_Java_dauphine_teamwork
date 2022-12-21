@@ -19,6 +19,10 @@ public class Habillement extends BienConso{
         }
     }
 
+    public Habillement(List<Integer>[] nombre_habillement){
+        this.nombre_habillement = nombre_habillement;
+    }
+
     public double getImpact(){
         impact=0;
         for(Categorie categorie: Categorie.values()){
