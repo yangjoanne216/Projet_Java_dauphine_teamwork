@@ -1,9 +1,6 @@
 package view_console;
 
-import consoCarbone.CE;
-import consoCarbone.Logement;
-import consoCarbone.Taille;
-import consoCarbone.Transport;
+import consoCarbone.*;
 import utilisateur_trice.*;
 
 import java.util.Scanner;
@@ -12,18 +9,22 @@ public class MainUI {
 
     Utilisateur user;
     String[] menuTitle;
+    BienConsoUI bienConsoUI;
 
-    public MainUI() {
-        user = new Utilisateur();
+    public MainUI(Utilisateur user) {
+        this.user = user;
         menuTitle = new String[] {
-            "Afficher empreinte",
-            "Afficher les transports",
-            "Ajouter un transport",
-            "Affichier tous les logement",
-            "Ajouter le logement",
-            "Ajouter un bien conso",
-            "Ajouter une alimentation"
+                "Afficher empreinte",
+                "Afficher les transports",
+                "Ajouter un transport",
+                "Affichier tous les logement",
+                "Ajouter le logement",
+                "Afficher bien conso",
+                "Ajouter un bien conso",
+                "Affichier l'alimentation",
+                "Modifier l'alimentation"
         };
+        bienConsoUI = new BienConsoUI(user);
     }
 
     public String Menu() {
@@ -43,7 +44,6 @@ public class MainUI {
     }
 
 
-
     public void showCars() {
         Transport[] allTransports = user.getTransports();
         if(allTransports.length==0){
@@ -54,32 +54,32 @@ public class MainUI {
         for(Transport t : allTransports){
             System.out.println(t);
         }
-        this.pressToContinue();
+        Utils.pressToContinue();
     }
 
     public void addCar() {
         // taille
         System.out.print("La taille de votre voiture (P ou G):\n> ");
-        char taille = readKey();
+        char taille = Utils.readKey();
         while(taille != 'P' && taille != 'p' && taille != 'G' && taille != 'g'){
             System.out.print("(P ou G)> ");
-            taille = readKey();
+            taille = Utils.readKey();
         }
         // to upper case
         if(taille >= 97) {taille -= 32;}
         // amortissement
         System.out.print("L'amortissement de votre voiture:\n> ");
-        int amorti = readInt();
+        int amorti = Utils.readInt();
         while(amorti<0){
             System.out.print("(la valeur soit positive)> ");
-            amorti = readInt();
+            amorti = Utils.readInt();
         }
         // kilomAnnee
         System.out.print("Le kilo d'année de votre voiture:\n> ");
-        int kilomAnnee = readInt();
+        int kilomAnnee = Utils.readInt();
         while(kilomAnnee<0){
             System.out.print("(la valeur soit positive)> ");
-            kilomAnnee = readInt();
+            kilomAnnee = Utils.readInt();
         }
         // add into user
         Transport transport = new Transport(true, taille=='P'? Taille.P:Taille.G, kilomAnnee, amorti);
@@ -96,75 +96,65 @@ public class MainUI {
         for(Logement logement : allLogements){
             System.out.println(logement);
         }
-        this.pressToContinue();
+        Utils.pressToContinue();
     }
 
     public void addLogement() {
         // surface
         System.out.print("La superfice de votre logement:\n> ");
-        int s = readInt();
+        int s = Utils.readInt();
         while(s<0){
             System.out.print("(la valeur soit positive)> ");
-            s = readInt();
+            s = Utils.readInt();
         }
         // CE
         System.out.print("Le CE de votre logement (A-G):\n> ");
-        char ce = readKey();
+        char ce = Utils.readKey();
         if(ce >= 97) {ce -= 32;} // to upper case
         while(ce<65 || ce >=65+7){
             System.out.print("(A-G)> ");
-            ce = readKey();
+            ce = Utils.readKey();
             if(ce >= 97) {ce -= 32;} // to upper case
         }
         Logement logement = new Logement(s, CE.getCEFromChar(ce));
         user.addLogement(logement);
     }
 
-    public char readKey() {
-        Scanner sc = new Scanner(System.in);
-        if(sc.hasNext()) {
-            String line = sc.next();
-            if(line.length()>1)
-                return ' ';
-            return line.charAt(0);
-        }
-        return ' ';
+    public void showAlimentation() {
+        System.out.println(user.getAlimentation());
+        Utils.pressToContinue();
     }
 
-    public int readInt() {
-        Scanner sc = new Scanner(System.in);
-        if(sc.hasNextInt()) {
-            return sc.nextInt();
+    public void setAlimentation() {
+        // 牛肉比例
+        System.out.print("牛肉的比例(0~1):\n> ");
+        double txBoeuf = Utils.readDouble();
+        while(txBoeuf < 0){
+            System.out.print("(la valeur soit positive)> ");
+            txBoeuf = Utils.readDouble();
         }
-        return -1;
-    }
-
-    public double readDouble() {
-        Scanner sc = new Scanner(System.in);
-        if(sc.hasNextDouble()) {
-            return sc.nextDouble();
+        // 蔬菜比例
+        System.out.print("蔬菜的比例(0~1):\n> ");
+        double txVege = Utils.readDouble();
+        while(txVege < 0){
+            System.out.print("(la valeur soit positive)> ");
+            txVege = Utils.readDouble();
         }
-        return -1;
-    }
-
-    public void pressToContinue(){
-        System.out.println("-------------");
-        System.out.print("c to continue\n> ");
-        while(this.readKey() != 'c'){
-            System.out.print("(c to continue)> ");
-        }
+        // 新建Alimentation
+        Alimentation alimentation = new Alimentation(txBoeuf,txVege);
+        user.setAlimentation(alimentation);
     }
 
     public void start() {
         System.out.println(Menu());
         System.out.print("> ");
-        char choise = readKey();
+        char choise = Utils.readKey();
         boolean invalideInput = false;
         while(choise != 'q') {
             switch (choise){
                 case '0':
                     user.detaillerEmpreinte();
-                    this.pressToContinue();
+                    Utils.pressToContinue();
                     break;
                 case '1':
                     this.showCars();
@@ -183,7 +173,14 @@ public class MainUI {
                     System.out.println("Add 5");
                     break;
                 case '6':
-                    System.out.println("Add 6");
+                    bienConsoUI.start();
+                    break;
+                case '7':
+                    showAlimentation();
+                    break;
+                case '8':
+                    setAlimentation();
+                    System.out.println("Succeed");
                     break;
                 default:
                     invalideInput = true;
@@ -196,11 +193,11 @@ public class MainUI {
                 System.out.println(Menu());
             }
             System.out.print("> ");
-            choise = readKey();
+            choise = Utils.readKey();
         }
     }
 
     public static void main(String[] args) {
-        new MainUI().start();
+        new MainUI(new Utilisateur()).start();
     }
 }
