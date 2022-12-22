@@ -2,15 +2,11 @@ package utilisateur_trice;
 
 import consoCarbone.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Utilisateur {
     private Alimentation alimentation;
     private AutreBien autreBien;
-
     private List<Logement>  logements;
     /*private Logement logement;*/
     /*private Transport transport;*/
@@ -53,6 +49,8 @@ public class Utilisateur {
         System.out.println("--------------1.Alimentation---------------------");
         System.out.println(alimentation);
         System.out.println("--------------2.BienConsommé---------------------");
+        System.out.println(bienNumerique);
+        System.out.println(habillement);
         System.out.println(autreBien);
         System.out.println("----------------3.logement------------------------");
         for(Logement logement: this.logements){
@@ -175,8 +173,25 @@ public class Utilisateur {
         if(comparerAvecMoyenLogements()>0){
             superieurAMoyen.add("Logements");
         }
-        return "Dans les aspects suivants, votre émission dépasse le niveau moyen des Français : " + superieurAMoyen + " ,j'espère que vous pourrez y prêter attention!";
 
 
+        return "L'ordre de vos plusieurs Poste de cosommations est :" +this.getListMiseEnOrder()+"\n"+
+                "Dans les aspects suivants, votre émission dépasse le niveau moyen des Français : " + superieurAMoyen + " ,j'espère que vous pourrez y prêter attention!";
+    }
+
+    public List getListMiseEnOrder(){
+        List<ConsoCarbone> posteDeConsomation = new ArrayList<ConsoCarbone>();
+        posteDeConsomation.add(habillement);
+        posteDeConsomation.add(bienNumerique);
+        //posteDeConsomation.add(transports);
+        posteDeConsomation.add(servicesPublics);
+        posteDeConsomation.add(autreBien);
+        posteDeConsomation.add(alimentation);
+        Collections.sort(posteDeConsomation);
+        List<String> listMiseEnOrder = new ArrayList<>();
+        for(ConsoCarbone consoCarbone : posteDeConsomation){
+            listMiseEnOrder.add(consoCarbone.getClass().getName().substring(13));
+        }
+        return listMiseEnOrder;
     }
 }

@@ -44,7 +44,7 @@ public class main {
         u1.addLogement(l2);
         u1.addTransport(t1);
         u1.detaillerEmpreinte();
-
+        System.out.println("---------------------------------------------");
 
     }
 }
