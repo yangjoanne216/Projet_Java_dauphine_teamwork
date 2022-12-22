@@ -13,6 +13,11 @@ public class ServicesPublics extends ConsoCarbone{
         return 0;
     };
 
+    @Override
+    public double getImpact() {
+        return 1.5;
+    }
+
     public static  ServicesPublics getServicesPublics(){
         return servicesPublics;
     }

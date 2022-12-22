@@ -19,7 +19,7 @@ public class Transport extends ConsoCarbone{
     }
 
     public static double getInfoMoyenne() {
-        return 1972;
+        return 1.972;
     }
 
     public Transport(boolean possede) {
@@ -90,6 +90,12 @@ public class Transport extends ConsoCarbone{
         //TODO 要有车才可以设置正数，否则抛出错误
         this.amortissement = amortissement;
     }
+
+    @Override
+    public double getImpact() {
+        return this.impact = possede?kilomAnnee*COEFF+taille.getEmissionFabrication()/amortissement:0;
+    }
+
     @Override
     public String toString() {
         if(possede)

@@ -22,7 +22,7 @@ public class BienNumerique extends BienConso{
 
 
     public static double getInfoMoyenne() {
-        return 1180;
+        return 1.18;
     }
     public double comparerAvecMoyen(){
         return this.impact-getInfoMoyenne();
@@ -40,6 +40,28 @@ public class BienNumerique extends BienConso{
                 "vous avez un haut niveau d'équipement : "+this.hautNiveau_Equipement+"\n"+
                 "l'impact de votre Bien Numérique est : "+String.format("%.6f",impact)+" TCO2eq."+"\n";
 
+    }
+
+    public boolean isUsage_intensif() {
+        return usage_intensif;
+    }
+
+    public void setUsage_intensif(boolean usage_intensif) {
+        this.usage_intensif = usage_intensif;
+    }
+
+    public boolean isHautNiveau_Equipement() {
+        return hautNiveau_Equipement;
+    }
+
+    public void setHautNiveau_Equipement(boolean hautNiveau_Equipement) {
+        this.hautNiveau_Equipement = hautNiveau_Equipement;
+    }
+
+    public double getImpact(){
+        this.impact = (usage_intensif ?IMPACT_USAGE_INTENSIF:IMPACT_USAGE_SOBRE)+
+                      (hautNiveau_Equipement? IMPACT_NIVEAU_HAUT : IMPACT_NIVEAU_SOBRE);
+        return this.impact;
     }
 
     /*public static void main(String[] args) {

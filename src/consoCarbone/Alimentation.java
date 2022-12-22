@@ -24,7 +24,7 @@ public class Alimentation extends ConsoCarbone {
 
 
     public static double getInfoMoyenne() {
-        return 2353;
+        return 2.353;
     }
 
     public double comparerAvecMoyen() {
@@ -35,13 +35,25 @@ public class Alimentation extends ConsoCarbone {
         return txBoeuf;
     }
     public void setTxBoeuf(double txBoeuf) {
+        if(txBoeuf<0||txBoeuf>1)
+        {
+            throw new RuntimeException("txVege,txBeuf et txVolaille=(1-txBoeuf-txVege) doivent être compris entre 0 et 1");
+        }
         this.txBoeuf = txBoeuf;
     }
     public double getTxVege() {
         return txVege;
     }
     public void setTxVege(double txVege) {
+        if(txVege<0||txVege>1)
+        {
+            throw new RuntimeException("txVege,txBeuf et txVolaille=(1-txBoeuf-txVege) doivent être compris entre 0 et 1");
+        }
         this.txVege = txVege;
+    }
+    public double getImpact(){
+        this.impact = COEF_BOEUF * txBoeuf + COEF_VOLAILLE * (1 - txVege - txBoeuf) + COEF_VEGE * txVege;
+        return this.impact;
     }
     public static void printInfoMoyen(){
         System.out.println(

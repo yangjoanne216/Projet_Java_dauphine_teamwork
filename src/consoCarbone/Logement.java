@@ -9,12 +9,9 @@ public class Logement extends ConsoCarbone{
         this.superficie=0;
         this.impact=0;
     }
-
-
     public static double getInfoMoyenne() {
-        return 2706;
+        return 2.706;
     }
-
 
     public Logement(int superficie, CE ce) {
         if(superficie<0){
@@ -42,6 +39,12 @@ public class Logement extends ConsoCarbone{
                 "pour les constructions et les gros entretiens : 675 kg eq CO2/an\n"+
                 "pour les énergies et les utilités : 1696 kg eq CO2/an\n");
     }
+
+    @Override
+    public double getImpact() {
+        return this.ce.getAlpha()*superficie;
+    }
+
     public String toString() {
         return "Logement : id =" + id +"\n"+"La superficie de votre logement : "+ superficie+" mètres carrés" +"\n" +
                 "La class énergique du logement est "+ce+"\n"+

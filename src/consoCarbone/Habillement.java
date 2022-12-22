@@ -31,7 +31,7 @@ public class Habillement extends BienConso{
         return impact;
     }
     public static double getInfoMoyenne() {
-        return 763;
+        return 0.763;
     }
     public double comparerAvecMoyen(){
         return this.impact-getInfoMoyenne();

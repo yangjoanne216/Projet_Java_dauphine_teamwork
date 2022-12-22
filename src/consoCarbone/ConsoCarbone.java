@@ -18,10 +18,6 @@ public abstract class ConsoCarbone implements Comparable<ConsoCarbone>   {
         return id;
     }
 
-    public static void setNbConsoCarbone(int nbConsoCarbone) {
-        ConsoCarbone.nbConsoCarbone = nbConsoCarbone;
-    }
-
     public void setId(int id) {
         this.id = id;
     }

@@ -8,7 +8,7 @@ public class AutreBien extends BienConso{
     }
 
     public static double getInfoMoyenne() {
-        return 538;
+        return 0.682;
     }
 
     public double comparerAvecMoyen(){
@@ -26,10 +26,15 @@ public class AutreBien extends BienConso{
         return this.montant;
     }
     public void setMontant(double montant){
-        if(montant<0){
-            throw new RuntimeException("Montant doit être un nombre non négatif");
+        if(montant<0||montant==0){
+            throw new RuntimeException("Montant doit être un nombre non négatif et non zéro");
         }
         this.montant=montant;
+    }
+
+    public double getImpact(){
+        this.impact=montant/DEPENSE_CO2;
+        return this.impact;
     }
 
     @Override
