@@ -13,20 +13,16 @@ import static org.junit.jupiter.api.Assertions.*;
 class AlimentationTest {
     private Alimentation alimentation0;
     private Alimentation alimentation1;
-
     @BeforeEach
     void setUp() {
         alimentation0 = new Alimentation();
         alimentation1 = new Alimentation(0.3,0.4);
     }
-
     @AfterEach
     void tearDown() {
         alimentation0 = null;
         alimentation1 = null;
     }
-
-
     @ParameterizedTest
     @CsvSource({"0.1,0.5,1.89","0.3,0.4,3.24","0.9,0.05,7.325"})
     void getImpact(double txBoeuf,double txVege,double resultatExpected) {
@@ -93,5 +89,6 @@ class AlimentationTest {
     public void setTauxThrowException()
     {
         setTxBoeuf(-1);
+        setTxVege(0);
     }
 }
