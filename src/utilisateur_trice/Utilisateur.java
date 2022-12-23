@@ -10,7 +10,7 @@ public class Utilisateur {
     private List<Logement>  logements;
     /*private Logement logement;*/
     /*private Transport transport;*/
-    private List<Transport> transports;
+    private List<Voiture> transports;
     private ServicesPublics servicesPublics;
 
     private Habillement habillement;
@@ -30,7 +30,7 @@ public class Utilisateur {
         this.bienNumerique = new BienNumerique();
     }
 
-    public Utilisateur(Alimentation a, AutreBien b, List<Logement> l, List<Transport> t, ServicesPublics s, Habillement h, BienNumerique bn){
+    public Utilisateur(Alimentation a, AutreBien b, List<Logement> l, List<Voiture> t, ServicesPublics s, Habillement h, BienNumerique bn){
         this.alimentation=a;
         this.autreBien =b;
         this.logements=l;
@@ -57,7 +57,7 @@ public class Utilisateur {
             System.out.println(logement);
         }
         System.out.println("----------------4.transport------------------------");
-        for(Transport transport: this.transports){
+        for(Voiture transport: this.transports){
             System.out.println(transport);
         }
         System.out.println("----------------5.service public-------------------");
@@ -80,7 +80,7 @@ public class Utilisateur {
 
     public double calculerImpactDeTransportTotal(){
         double impactTransports = 0;
-        for(Transport transport: this.transports){
+        for(Voiture transport: this.transports){
             impactTransports = impactTransports+transport.getImpact();
         }
         return impactTransports;
@@ -91,7 +91,7 @@ public class Utilisateur {
     }
 
     public double comparerAvecMoyenTransports(){
-        return  calculerImpactDeTransportTotal()-Transport.getInfoMoyenne();
+        return  calculerImpactDeTransportTotal()- Voiture.getInfoMoyenne();
     }
 
 
@@ -145,11 +145,11 @@ public class Utilisateur {
         this.logements.add(logement);
     }
 
-    public Transport[] getTransports() {
-        return transports.toArray(new Transport[0]);
+    public Voiture[] getTransports() {
+        return transports.toArray(new Voiture[0]);
     }
 
-    public void addTransport(Transport transport) {
+    public void addTransport(Voiture transport) {
         this.transports.add(transport);
     }
 

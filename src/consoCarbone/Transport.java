@@ -1,112 +1,37 @@
 package consoCarbone;
 
-import my_exceptions.NoVehiculeException;
+import java.util.List;
 
-import java.io.IOException;
+public class Transport extends ConsoCarbone {
 
-public class Transport extends ConsoCarbone{
-    private boolean possede;
-    private Taille taille;
-    private int kilomAnnee;
-    private int amortissement;
-    private static final double COEFF=0.000193;
-    public Transport(){
-        super();
-        this.possede=false;
-        this.taille = null;
-        this.kilomAnnee=0;
-        this.amortissement=0;
+    List<Voiture> voitures;
+    
+    public void addVoiture(Voiture v) {
+        this.voitures.add(v);
     }
 
-    public static double getInfoMoyenne() {
-        return 1.972;
+    public int nbVoiture() {
+        return this.voitures.size();
     }
-
-    public Transport(boolean possede) {
-        super();
-        //TODO 此处可以允许用户输入有车后面在输入具体参数
-        /*if (possede) {
-            throw new IOException("Si vous avez un véhicule, veuillez nous indiquer son modèle, la durée de conservation de ce véhicule et combien de kilomètres vous parcourez par an");
-        }*/
-        this.possede = possede;
-        this.taille = null;
-        this.kilomAnnee=0;
-        this.amortissement=0;
-    }
-    public Transport(boolean possede, Taille taille, int kilomAnnee, int amortissement) {
-        //TODO 此处用户要是没车还输入了后面的参数，需要抛出异常
-        if(!possede&&(taille!=null||kilomAnnee!=0||amortissement!=0))
-        {
-            throw new RuntimeException("Si vous n’avez pas de voiture, vous n’avez pas besoin d’entrer les paramètres de Taille, kiloAnnee, amortissement");
-        }
-        if(amortissement <= 0){
-            throw new ArithmeticException("Le dénominateur est zéro ou la durée de conservation de votre véhicule ne peut pas être égal ou inférieur à 0");
-        }
-        this.possede = possede;
-        this.taille = possede?taille:null;
-        this.kilomAnnee = possede?kilomAnnee:0;
-        this.amortissement = possede?amortissement:0;
-        this.impact = possede?kilomAnnee*COEFF+taille.getEmissionFabrication()/amortissement:0;
-    }
-    public boolean isPossede() {
-        return possede;
-    }
-    public void setPossede(boolean possede) {
-        this.possede = possede;
-        if(possede==false){
-            this.taille=null;
-            this.kilomAnnee=0;
-            this.amortissement=0;
-            this.impact=0;
-        }
-    }
-    public Taille getTaille() {
-        return taille;
-    }
-    public void setTaille(Taille taille) throws Exception {
-        //TODO 要有车才可以设置正数，否则抛出错误
-        if(possede=false && taille!=null){
-            throw new NoVehiculeException();
-            //throw new Exception("Vous ne pouvez pas entrer une Taille non nulle si vous n'avez pas de voiture");
-        }
-
-        this.taille = taille;
-    }
-
-    public int getKilomAnnee() {
-        return kilomAnnee;
-    }
-    public void setKilomAnnee(int kilomAnnee) throws IOException {
-        //TODO 要有车才可以设置正数，否则抛出错误
-        if(this.possede=false && kilomAnnee!=0) {
-            throw new IOException("Vous ne pouvez pas entrer une  non nulle si vous n'avez pas de voiture");
-        }
-        this.kilomAnnee = kilomAnnee;
-    }
-    public int getAmortissement() {
-        return amortissement;
-    }
-    public void setAmortissement(int amortissement) {
-        //TODO 要有车才可以设置正数，否则抛出错误
-        this.amortissement = amortissement;
-    }
-
+    
     @Override
     public double getImpact() {
-        return this.impact = possede?kilomAnnee*COEFF+taille.getEmissionFabrication()/amortissement:0;
+        double res = 0;
+        for(Voiture v : this.voitures) {
+            res += v.getImpact();
+        }
+        return res / voitures.size();
     }
 
     @Override
     public String toString() {
-        if(possede)
-            return "Transport : id =" + id +"\n"+
-                    "vous possedez une "+ taille.getTailleName() +";\n" +
-                    "Vous parcourez : "+kilomAnnee+" kilomètre par an;\n"+
-                    "La durée de conservation de votre véhicule : "+amortissement+" ans"+";\n"+
-                    "l'impact de votre transport en terme d'émissions de GES : "+String.format("%.6f",impact)+" TCO2eq."+"\n";
-        else
-            return  "Transport : id =" + id +"\n"+"vous ne possedez pas une voiture" +";\n" +
-                    "l'impact de votre transport en terme d'émissions de GES : 0 TCO2eq."+"\n";
-
+        if(nbVoiture()==0) {
+            return "Vous possede aucun transport\n";
+        }
+        String res = "";
+        for (Voiture voiture : voitures) {
+            res += voiture.toString();
+        }
+        return res;
     }
 }

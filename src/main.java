@@ -24,7 +24,7 @@ public class main {
         System.out.println(b1);
 
         System.out.println("\n" +"Test Class Transport");
-        Transport t1 = new Transport(true, Taille.P, 100000000, 3);
+        Voiture t1 = new Voiture(true, Taille.P, 100000000, 3);
         System.out.println(t1);
 
         System.out.println("\n"+"Test Class ServicesPublics");
@@ -34,7 +34,7 @@ public class main {
         int[][] nombre_habillement={{10,5},{5},{20,5,3},{2,2,2,3},{2,1,1},{2,2},{2,1,1}};
         Habillement h1 = new Habillement();
         List<Logement> logements= new ArrayList<>();
-        List<Transport> transports = new ArrayList<>();
+        List<Voiture> transports = new ArrayList<>();
 
 
         BienNumerique bn= new BienNumerique();
@@ -45,6 +45,8 @@ public class main {
         u1.addTransport(t1);
         u1.detaillerEmpreinte();
         System.out.println("---------------------------------------------");
+
+
 
     }
 }

@@ -3,8 +3,6 @@ package view_console;
 import consoCarbone.*;
 import utilisateur_trice.*;
 
-import java.util.Scanner;
-
 public class MainUI {
 
     Utilisateur user;
@@ -45,13 +43,13 @@ public class MainUI {
 
 
     public void showCars() {
-        Transport[] allTransports = user.getTransports();
+        Voiture[] allTransports = user.getTransports();
         if(allTransports.length==0){
             System.out.println("Vous n'avez pas de voiture.");
             return;
         }
         System.out.println("Vous avez en total "+allTransports.length+" voiture(s):\n");
-        for(Transport t : allTransports){
+        for(Voiture t : allTransports){
             System.out.println(t);
         }
         Utils.pressToContinue();
@@ -82,7 +80,7 @@ public class MainUI {
             kilomAnnee = Utils.readInt();
         }
         // add into user
-        Transport transport = new Transport(true, taille=='P'? Taille.P:Taille.G, kilomAnnee, amorti);
+        Voiture transport = new Voiture(true, taille=='P'? Taille.P:Taille.G, kilomAnnee, amorti);
         user.addTransport(transport);
     }
 
