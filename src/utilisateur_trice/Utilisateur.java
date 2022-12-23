@@ -2,6 +2,7 @@ package utilisateur_trice;
 
 import consoCarbone.*;
 
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Utilisateur {
@@ -38,6 +39,62 @@ public class Utilisateur {
         this.servicesPublics=s;
         this.habillement=h;
         this.bienNumerique=bn;
+    }
+
+    public Utilisateur(String path) {
+        this();
+        int cursor = 0;
+        try {
+            // 获得每行的东西
+            String[] data = TextReader.readText(path);
+            // 获得车的数量
+            int nbVoiture = Integer.parseInt(data[cursor]);
+            cursor += 1;
+            // 解析每一个房子
+            for(int i=cursor; i<cursor+nbVoiture; i++) {
+                String[] temp = data[i].split(",");
+                Taille taille = temp[0]=="P" ? Taille.P : Taille.G;
+                int amortissement = Integer.parseInt(temp[1]);
+                int kiloAnnee = Integer.parseInt(temp[2]);
+                transport.addVoiture(new Voiture(true, taille, kiloAnnee, amortissement));
+            }
+            cursor += nbVoiture;
+            // 获得公寓数量
+            int nbAppart = Integer.parseInt(data[cursor]);
+            cursor += 1;
+            // 解析公寓
+            for(int i=cursor; i<cursor+nbAppart; i++) {
+                String[] temp = data[i].split(",");
+                int surface = Integer.parseInt(temp[0]);
+                CE ce = CE.getCEFromChar(temp[1].charAt(0));
+                logement.addAppartement(new Appartement(surface, ce));
+            }
+            cursor += nbAppart;
+            // 解析Habillement
+            String[] temp = data[cursor].split(";");
+            int i=0;
+            for(Categorie c : Categorie.values()) {
+                String[] temp2 = temp[i].split(",");
+                List<Integer> numbers = new ArrayList<>();
+                for(String str : temp2) {
+                    numbers.add(Integer.parseInt(str));
+                }
+                habillement.setCat(c, numbers);
+                i++;
+            }
+            cursor += 1;
+            // 解析消费 Autre bien
+            this.autreBien.setMontant(Double.parseDouble(data[cursor]));
+            cursor += 1;
+            // 肉和菜的比例
+            temp = data[cursor].split(",");
+            alimentation.setTxBoeuf(Double.parseDouble(temp[0]));
+            alimentation.setTxVege(Double.parseDouble(temp[1]));
+        } catch (FileNotFoundException e) {
+            System.out.println("Le chemin de la fichier n'est pas valide");
+        } catch (Exception e) {
+            System.out.println("Décoder erreur");
+        }
     }
 
     public double calculerEmpreinte(){
