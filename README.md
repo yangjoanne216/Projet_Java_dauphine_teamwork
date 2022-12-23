@@ -10,7 +10,7 @@ Université Paris Dauphine
 ## Introduction
 Le projet est pour la mise en oeuvre d' un calculateur d'empreinte carbone.
 
-L'utilisateur peut saisir des paramètres sur **le logement**, **le transport**, **la valeur des biens consommés**, **les habitudes alimentaires**， **les services publics** (par défaut 1,5 TCO2eq) 
+L'utilisateur peut saisir des paramètres sur **le appartement**, **le transport**, **la valeur des biens consommés**, **les habitudes alimentaires**， **les services publics** (par défaut 1,5 TCO2eq) 
 
 pour obtenir son empreinte carbone.
 

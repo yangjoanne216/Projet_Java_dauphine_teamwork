@@ -8,8 +8,8 @@ import java.util.List;
 public class main {
     public static void main(String[] args) throws IOException {
         System.out.println("\n" +"Test Class Logement");
-        Logement l1 = new Logement(20, CE.A);
-        Logement l2 = new Logement(10,CE.B);
+        Appartement l1 = new Appartement(20, CE.A);
+        Appartement l2 = new Appartement(10,CE.B);
         System.out.println(l1);
 
         System.out.println("\n" +"Test Class Alimentation");
@@ -33,13 +33,13 @@ public class main {
 
         int[][] nombre_habillement={{10,5},{5},{20,5,3},{2,2,2,3},{2,1,1},{2,2},{2,1,1}};
         Habillement h1 = new Habillement();
-        List<Logement> logements= new ArrayList<>();
+        List<Appartement> appartements = new ArrayList<>();
         List<Voiture> transports = new ArrayList<>();
 
 
         BienNumerique bn= new BienNumerique();
         System.out.println("\n"+"Test Class utilisateur");
-        Utilisateur u1=new Utilisateur(a1,b1,logements,transports,sv,h1,bn);
+        Utilisateur u1=new Utilisateur(a1,b1, appartements,transports,sv,h1,bn);
         u1.addLogement(l1);
         u1.addLogement(l2);
         u1.addTransport(t1);

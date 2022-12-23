@@ -1,11 +1,15 @@
 package consoCarbone;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Transport extends ConsoCarbone {
 
     List<Voiture> voitures;
-    
+
+    public Transport(){
+        voitures = new ArrayList<>();
+    }
     public void addVoiture(Voiture v) {
         this.voitures.add(v);
     }
@@ -20,13 +24,13 @@ public class Transport extends ConsoCarbone {
         for(Voiture v : this.voitures) {
             res += v.getImpact();
         }
-        return res / voitures.size();
+        return res;
     }
 
     @Override
     public String toString() {
         if(nbVoiture()==0) {
-            return "Vous possede aucun transport\n";
+            return "Vous possede aucune voiture\n";
         }
         String res = "";
         for (Voiture voiture : voitures) {

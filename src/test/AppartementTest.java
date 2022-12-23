@@ -1,7 +1,7 @@
 package test;
 
 import consoCarbone.CE;
-import consoCarbone.Logement;
+import consoCarbone.Appartement;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,84 +12,84 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LogementTest {
-    private Logement logement0;
-    private Logement logement1;
+class AppartementTest {
+    private Appartement appartement0;
+    private Appartement appartement1;
     @BeforeEach
     void setUp() {
-        logement0 = new Logement();
-        logement1 = new Logement(125, CE.A);
+        appartement0 = new Appartement();
+        appartement1 = new Appartement(125, CE.A);
 
     }
 
     @AfterEach
     void tearDown() {
-        logement0=null;
-        logement1=null;
+        appartement0 =null;
+        appartement1 =null;
     }
 
     @ParameterizedTest
     @ValueSource(ints = { 0, 1, 2, 3, 4 })
     void setId(int id) {
-        logement0.setId(id);
-        assertEquals(id,logement0.getId());
+        appartement0.setId(id);
+        assertEquals(id, appartement0.getId());
     }
 
     @ParameterizedTest
     @CsvSource({"A,100,0.5","B,225,2.25","G,345,34.5"})
     void getImpact(CE ce,int superficie,double impactExcepted) {
-        logement0.setCe(ce);
-        logement0.setSuperficie(superficie);
-        assertEquals(impactExcepted,logement0.getImpact());
-        logement1.setCe(ce);
-        logement1.setSuperficie(superficie);
-        assertEquals(impactExcepted,logement1.getImpact());
+        appartement0.setCe(ce);
+        appartement0.setSuperficie(superficie);
+        assertEquals(impactExcepted, appartement0.getImpact());
+        appartement1.setCe(ce);
+        appartement1.setSuperficie(superficie);
+        assertEquals(impactExcepted, appartement1.getImpact());
     }
 
    @ParameterizedTest
    @CsvSource({"A,100,-1","B,225,1","G,345,1"})
    void compareTo(CE ce, int superfice,int differenceExcepted) {
-        logement0.setCe(ce);
-        logement0.setSuperficie(superfice);
-        assertEquals(differenceExcepted,logement0.compareTo(logement1),0.0001);
+        appartement0.setCe(ce);
+        appartement0.setSuperficie(superfice);
+        assertEquals(differenceExcepted, appartement0.compareTo(appartement1),0.0001);
     }
 
     @Test
     void getInfoMoyenne() {
-        assertEquals(2.706,Logement.getInfoMoyenne(),0.0001);
+        assertEquals(2.706, Appartement.getInfoMoyenne(),0.0001);
     }
 
     @ParameterizedTest
     @ValueSource(ints = {65, 70, 100, 45, 89})
     void getSuperficie(int superficie) {
-        logement0.setSuperficie(superficie);
-        assertEquals(superficie,logement0.getSuperficie());
-        logement1.setSuperficie(superficie);
-        assertEquals(superficie,logement1.getSuperficie());
+        appartement0.setSuperficie(superficie);
+        assertEquals(superficie, appartement0.getSuperficie());
+        appartement1.setSuperficie(superficie);
+        assertEquals(superficie, appartement1.getSuperficie());
     }
 
     @ParameterizedTest
     @ValueSource(ints = {65, 70, 100, 45, 89})
     void setSuperficie(int superficie) {
-        logement1.setSuperficie(superficie);
+        appartement1.setSuperficie(superficie);
         assertNotEquals(superficie,125);
     }
 
     @ParameterizedTest
     @EnumSource(CE.class)
      void setAndGetCe(CE ce) {
-        logement0.setCe(ce);
-        assertEquals(ce,logement0.getCe());
-        logement1.setCe(ce);
-        assertEquals(ce,logement1.getCe());
+        appartement0.setCe(ce);
+        assertEquals(ce, appartement0.getCe());
+        appartement1.setCe(ce);
+        assertEquals(ce, appartement1.getCe());
     }
 
     @Test
     void testToString() {
-        logement0.setId(0);
+        appartement0.setId(0);
         assertEquals("Logement : id =0\n" +
                 "La superficie de votre logement : 0 mètres carrés\n" +
                 "La class énergique du logement est A\n" +
-                "l'impact de votre logement en terme d'émissions de GES :  0.000000 TCO2eq.\n",logement0.toString());
+                "l'impact de votre logement en terme d'émissions de GES :  0.000000 TCO2eq.\n", appartement0.toString());
     }
 }

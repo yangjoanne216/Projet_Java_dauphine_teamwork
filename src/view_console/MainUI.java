@@ -85,14 +85,14 @@ public class MainUI {
     }
 
     public void showAllLogement() {
-        Logement[] allLogements = user.getLogements();
-        if(allLogements.length==0){
+        Appartement[] allAppartements = user.getLogements();
+        if(allAppartements.length==0){
             System.out.println("Vous n'avez pas encore déclarer votre logement.");
             return;
         }
-        System.out.println("Vous avez en total "+allLogements.length+" logement(s):\n");
-        for(Logement logement : allLogements){
-            System.out.println(logement);
+        System.out.println("Vous avez en total "+ allAppartements.length+" logement(s):\n");
+        for(Appartement appartement : allAppartements){
+            System.out.println(appartement);
         }
         Utils.pressToContinue();
     }
@@ -114,8 +114,8 @@ public class MainUI {
             ce = Utils.readKey();
             if(ce >= 97) {ce -= 32;} // to upper case
         }
-        Logement logement = new Logement(s, CE.getCEFromChar(ce));
-        user.addLogement(logement);
+        Appartement appartement = new Appartement(s, CE.getCEFromChar(ce));
+        user.addLogement(appartement);
     }
 
     public void showAlimentation() {

@@ -7,7 +7,7 @@ import java.util.*;
 public class Utilisateur {
     private Alimentation alimentation;
     private AutreBien autreBien;
-    private List<Logement>  logements;
+    private List<Appartement> appartements;
     /*private Logement logement;*/
     /*private Transport transport;*/
     private List<Voiture> transports;
@@ -21,7 +21,7 @@ public class Utilisateur {
     public Utilisateur(){
         this.alimentation =  new Alimentation(0,1);
         this.autreBien = new AutreBien();
-        this.logements = new ArrayList<>();
+        this.appartements = new ArrayList<>();
         this.transports = new ArrayList<>();
         /*this.logement = new Logement();
         this.transport=new Transport();*/
@@ -30,10 +30,10 @@ public class Utilisateur {
         this.bienNumerique = new BienNumerique();
     }
 
-    public Utilisateur(Alimentation a, AutreBien b, List<Logement> l, List<Voiture> t, ServicesPublics s, Habillement h, BienNumerique bn){
+    public Utilisateur(Alimentation a, AutreBien b, List<Appartement> l, List<Voiture> t, ServicesPublics s, Habillement h, BienNumerique bn){
         this.alimentation=a;
         this.autreBien =b;
-        this.logements=l;
+        this.appartements =l;
         this.transports=t;
         this.servicesPublics=s;
         this.habillement=h;
@@ -53,8 +53,8 @@ public class Utilisateur {
         System.out.println(habillement);
         System.out.println(autreBien);
         System.out.println("----------------3.logement------------------------");
-        for(Logement logement: this.logements){
-            System.out.println(logement);
+        for(Appartement appartement : this.appartements){
+            System.out.println(appartement);
         }
         System.out.println("----------------4.transport------------------------");
         for(Voiture transport: this.transports){
@@ -72,8 +72,8 @@ public class Utilisateur {
 
     public double calculerImpactDeLogementsTotal(){
         double impactLogements = 0;
-        for(Logement logement: this.logements){
-            impactLogements = impactLogements+logement.getImpact();
+        for(Appartement appartement : this.appartements){
+            impactLogements = impactLogements+ appartement.getImpact();
         }
         return impactLogements;
     }
@@ -87,7 +87,7 @@ public class Utilisateur {
     }
 
     public double comparerAvecMoyenLogements(){
-        return calculerImpactDeLogementsTotal()-Logement.getInfoMoyenne();
+        return calculerImpactDeLogementsTotal()- Appartement.getInfoMoyenne();
     }
 
     public double comparerAvecMoyenTransports(){
@@ -137,12 +137,12 @@ public class Utilisateur {
         this.bienNumerique = bienNumerique;
     }
 
-    public Logement[] getLogements() {
-        return logements.toArray(new Logement[0]);
+    public Appartement[] getLogements() {
+        return appartements.toArray(new Appartement[0]);
     }
 
-    public void addLogement(Logement logement) {
-        this.logements.add(logement);
+    public void addLogement(Appartement appartement) {
+        this.appartements.add(appartement);
     }
 
     public Voiture[] getTransports() {
@@ -180,18 +180,19 @@ public class Utilisateur {
     }
 
     public List getListMiseEnOrder(){
-        List<ConsoCarbone> posteDeConsomation = new ArrayList<ConsoCarbone>();
-        posteDeConsomation.add(habillement);
-        posteDeConsomation.add(bienNumerique);
-        //posteDeConsomation.add(transports);
-        posteDeConsomation.add(servicesPublics);
-        posteDeConsomation.add(autreBien);
-        posteDeConsomation.add(alimentation);
+        List<Double> posteDeConsomation = new ArrayList<Double>();
+        posteDeConsomation.add(habillement.getImpact());
+        posteDeConsomation.add(bienNumerique.getImpact());
+        posteDeConsomation.add(this.calculerImpactDeLogementsTotal());
+        posteDeConsomation.add(servicesPublics.getImpact());
+        posteDeConsomation.add(autreBien.getImpact());
+        posteDeConsomation.add(alimentation.getImpact());
+        posteDeConsomation.add(this.calculerImpactDeTransportTotal());
         Collections.sort(posteDeConsomation);
         List<String> listMiseEnOrder = new ArrayList<>();
-        for(ConsoCarbone consoCarbone : posteDeConsomation){
+       /* for(ConsoCarbone consoCarbone : posteDeConsomation){
             listMiseEnOrder.add(consoCarbone.getClass().getName().substring(13));
-        }
+        }*/
         return listMiseEnOrder;
     }
 }
