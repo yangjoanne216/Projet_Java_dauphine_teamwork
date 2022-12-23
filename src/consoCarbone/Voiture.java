@@ -84,13 +84,13 @@ public class Voiture extends ConsoCarbone{
     @Override
     public String toString() {
         if(possede)
-            return "Transport : id =" + id +"\n"+
+            return "Voiture : id =" + id +"\n"+
                     "vous possedez une "+ taille.getTailleName() +";\n" +
                     "Vous parcourez : "+kilomAnnee+" kilomètre par an;\n"+
                     "La durée de conservation de votre véhicule : "+amortissement+" ans"+";\n"+
                     "l'impact de votre transport en terme d'émissions de GES : "+String.format("%.6f",impact)+" TCO2eq."+"\n";
         else
-            return  "Transport : id =" + id +"\n"+"vous ne possedez pas une voiture" +";\n" +
+            return  "Voiture : id =" + id +"\n"+"vous ne possedez pas une voiture" +";\n" +
                     "l'impact de votre transport en terme d'émissions de GES : 0 TCO2eq."+"\n";
 
     }

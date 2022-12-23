@@ -214,7 +214,7 @@ public class Utilisateur {
             superieurAMoyen.add("Logements");
         }
 
-        return "L'ordre de vos plusieurs Poste de cosommations est :" +this.getListMiseEnOrder()+"\n"+
+        return "L'ordre de vos plusieurs postes de cosommations est :" +this.getListMiseEnOrder()+"\n"+
                 "Dans les aspects suivants, votre émission dépasse le niveau moyen des Français : " + superieurAMoyen + " ,j'espère que vous pourrez y prêter attention!";
     }
 

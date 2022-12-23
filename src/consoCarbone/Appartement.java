@@ -36,7 +36,7 @@ public class Appartement extends ConsoCarbone{
     }
 
     public String toString() {
-        return "Logement : id =" + id +"\n"+"La superficie de votre logement : "+ superficie+" mètres carrés" +"\n" +
+        return "Appartement : id =" + id +"\n"+"La superficie de votre logement : "+ superficie+" mètres carrés" +"\n" +
                 "La class énergique du logement est "+ce+"\n"+
                 "l'impact de votre logement en terme d'émissions de GES :  "+String.format("%.6f",impact)+" TCO2eq."+"\n";
     }

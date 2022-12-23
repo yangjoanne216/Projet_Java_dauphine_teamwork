@@ -1,4 +1,4 @@
-车子数n
+nombre de voitures n
 型号1 年份1 公里数1
 。。。
 型号n 年份n 公里数n

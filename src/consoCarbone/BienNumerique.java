@@ -36,7 +36,7 @@ public class BienNumerique extends BienConso{
 
     @Override
     public String toString() {
-        return " BienNumerique : id =" + id +"\n"+"vous avez un usage intensif numérigue : " + this.usage_intensif +"\n" +
+        return "BienNumerique : id =" + id +"\n"+"vous avez un usage intensif numérigue : " + this.usage_intensif +"\n" +
                 "vous avez un haut niveau d'équipement : "+this.hautNiveau_Equipement+"\n"+
                 "l'impact de votre Bien Numérique est : "+String.format("%.6f",impact)+" TCO2eq."+"\n";
 
