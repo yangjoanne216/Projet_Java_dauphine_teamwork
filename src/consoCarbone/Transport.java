@@ -17,7 +17,12 @@ public class Transport extends ConsoCarbone {
     public int nbVoiture() {
         return this.voitures.size();
     }
-    
+    public static double getInfoMoyenne() {
+        return 1.972;
+    }
+    public double comparerAvecMoyen() {
+        return getImpact()-getInfoMoyenne();
+    }
     @Override
     public double getImpact() {
         double res = 0;
@@ -25,6 +30,10 @@ public class Transport extends ConsoCarbone {
             res += v.getImpact();
         }
         return res;
+    }
+
+    public List<Voiture> getVoitures(){
+        return this.voitures;
     }
 
     @Override

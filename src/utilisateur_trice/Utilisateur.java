@@ -7,10 +7,10 @@ import java.util.*;
 public class Utilisateur {
     private Alimentation alimentation;
     private AutreBien autreBien;
-    private List<Appartement> appartements;
+    private Logement logement;
     /*private Logement logement;*/
     /*private Transport transport;*/
-    private List<Voiture> transports;
+    private Transport transport;
     private ServicesPublics servicesPublics;
 
     private Habillement habillement;
@@ -21,8 +21,8 @@ public class Utilisateur {
     public Utilisateur(){
         this.alimentation =  new Alimentation(0,1);
         this.autreBien = new AutreBien();
-        this.appartements = new ArrayList<>();
-        this.transports = new ArrayList<>();
+        this.logement = new Logement();
+        this.transport = new Transport();
         /*this.logement = new Logement();
         this.transport=new Transport();*/
         this.servicesPublics = ServicesPublics.getServicesPublics();
@@ -30,18 +30,18 @@ public class Utilisateur {
         this.bienNumerique = new BienNumerique();
     }
 
-    public Utilisateur(Alimentation a, AutreBien b, List<Appartement> l, List<Voiture> t, ServicesPublics s, Habillement h, BienNumerique bn){
+    public Utilisateur(Alimentation a, AutreBien b, Logement l, Transport t, ServicesPublics s, Habillement h, BienNumerique bn){
         this.alimentation=a;
         this.autreBien =b;
-        this.appartements =l;
-        this.transports=t;
+        this.logement =l;
+        this.transport=t;
         this.servicesPublics=s;
         this.habillement=h;
         this.bienNumerique=bn;
     }
 
     public double calculerEmpreinte(){
-        return alimentation.getImpact()+ autreBien.getImpact()+ this.calculerImpactDeLogementsTotal()+ this.calculerImpactDeTransportTotal()+servicesPublics.getImpact()+habillement.getImpact();
+        return alimentation.getImpact()+ autreBien.getImpact()+ logement.getImpact()+ transport.getImpact()+servicesPublics.getImpact()+habillement.getImpact();
     }
     public void detaillerEmpreinte(){
         System.out.println("Volià des informations sur votre empreinte carbon");
@@ -53,13 +53,9 @@ public class Utilisateur {
         System.out.println(habillement);
         System.out.println(autreBien);
         System.out.println("----------------3.logement------------------------");
-        for(Appartement appartement : this.appartements){
-            System.out.println(appartement);
-        }
+        System.out.println(logement);
         System.out.println("----------------4.transport------------------------");
-        for(Voiture transport: this.transports){
-            System.out.println(transport);
-        }
+        System.out.println(transport);
         System.out.println("----------------5.service public-------------------");
         System.out.println(servicesPublics);
         System.out.println("----------------7.habillement-------------------");
@@ -70,29 +66,6 @@ public class Utilisateur {
         System.out.println(getRecommandation());
     }
 
-    public double calculerImpactDeLogementsTotal(){
-        double impactLogements = 0;
-        for(Appartement appartement : this.appartements){
-            impactLogements = impactLogements+ appartement.getImpact();
-        }
-        return impactLogements;
-    }
-
-    public double calculerImpactDeTransportTotal(){
-        double impactTransports = 0;
-        for(Voiture transport: this.transports){
-            impactTransports = impactTransports+transport.getImpact();
-        }
-        return impactTransports;
-    }
-
-    public double comparerAvecMoyenLogements(){
-        return calculerImpactDeLogementsTotal()- Appartement.getInfoMoyenne();
-    }
-
-    public double comparerAvecMoyenTransports(){
-        return  calculerImpactDeTransportTotal()- Voiture.getInfoMoyenne();
-    }
 
 
     public Alimentation getAlimentation() {
@@ -137,20 +110,27 @@ public class Utilisateur {
         this.bienNumerique = bienNumerique;
     }
 
-    public Appartement[] getLogements() {
-        return appartements.toArray(new Appartement[0]);
+    public Logement getLogement() {
+        return logement;
     }
 
-    public void addLogement(Appartement appartement) {
-        this.appartements.add(appartement);
+    public Appartement[] getAppartements(){
+        return logement.getAppartements().toArray(new Appartement[0]);
     }
 
-    public Voiture[] getTransports() {
-        return transports.toArray(new Voiture[0]);
+    public void addAppartement(Appartement appartement) {
+        logement.addAppartement(appartement);
+    }
+    public Transport getTransport() {
+        return transport;
     }
 
-    public void addTransport(Voiture transport) {
-        this.transports.add(transport);
+    public Voiture[] getVoitures(){
+        return transport.getVoitures().toArray(new Voiture[0]);
+    }
+
+    public void addVoiture(Voiture voiture) {
+        transport.addVoiture(voiture);
     }
 
     public  String  getRecommandation(){
@@ -167,32 +147,31 @@ public class Utilisateur {
         if(habillement.comparerAvecMoyen()>0){
             superieurAMoyen.add("habillement");
         }
-        if(comparerAvecMoyenTransports()>0){
+        if(transport.comparerAvecMoyen()>0){
             superieurAMoyen.add("Transports");
         }
-        if(comparerAvecMoyenLogements()>0){
+        if(logement.comparerAvecMoyen()>0){
             superieurAMoyen.add("Logements");
         }
-
 
         return "L'ordre de vos plusieurs Poste de cosommations est :" +this.getListMiseEnOrder()+"\n"+
                 "Dans les aspects suivants, votre émission dépasse le niveau moyen des Français : " + superieurAMoyen + " ,j'espère que vous pourrez y prêter attention!";
     }
 
     public List getListMiseEnOrder(){
-        List<Double> posteDeConsomation = new ArrayList<Double>();
-        posteDeConsomation.add(habillement.getImpact());
-        posteDeConsomation.add(bienNumerique.getImpact());
-        posteDeConsomation.add(this.calculerImpactDeLogementsTotal());
-        posteDeConsomation.add(servicesPublics.getImpact());
-        posteDeConsomation.add(autreBien.getImpact());
-        posteDeConsomation.add(alimentation.getImpact());
-        posteDeConsomation.add(this.calculerImpactDeTransportTotal());
+        List<ConsoCarbone> posteDeConsomation = new ArrayList<ConsoCarbone>();
+        posteDeConsomation.add(habillement);
+        posteDeConsomation.add(bienNumerique);
+        posteDeConsomation.add(logement);
+        posteDeConsomation.add(servicesPublics);
+        posteDeConsomation.add(autreBien);
+        posteDeConsomation.add(alimentation);
+        posteDeConsomation.add(transport);
         Collections.sort(posteDeConsomation);
         List<String> listMiseEnOrder = new ArrayList<>();
-       /* for(ConsoCarbone consoCarbone : posteDeConsomation){
+        for(ConsoCarbone consoCarbone : posteDeConsomation){
             listMiseEnOrder.add(consoCarbone.getClass().getName().substring(13));
-        }*/
+        }
         return listMiseEnOrder;
     }
 }

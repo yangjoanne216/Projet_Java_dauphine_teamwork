@@ -43,7 +43,7 @@ public class MainUI {
 
 
     public void showCars() {
-        Voiture[] allTransports = user.getTransports();
+        Voiture[] allTransports = user.getVoitures();
         if(allTransports.length==0){
             System.out.println("Vous n'avez pas de voiture.");
             return;
@@ -81,11 +81,11 @@ public class MainUI {
         }
         // add into user
         Voiture transport = new Voiture(true, taille=='P'? Taille.P:Taille.G, kilomAnnee, amorti);
-        user.addTransport(transport);
+        user.addVoiture(transport);
     }
 
     public void showAllLogement() {
-        Appartement[] allAppartements = user.getLogements();
+        Appartement[] allAppartements = user.getAppartements();
         if(allAppartements.length==0){
             System.out.println("Vous n'avez pas encore déclarer votre logement.");
             return;
@@ -115,7 +115,7 @@ public class MainUI {
             if(ce >= 97) {ce -= 32;} // to upper case
         }
         Appartement appartement = new Appartement(s, CE.getCEFromChar(ce));
-        user.addLogement(appartement);
+        user.addAppartement(appartement);
     }
 
     public void showAlimentation() {

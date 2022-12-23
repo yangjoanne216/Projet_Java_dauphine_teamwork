@@ -54,10 +54,6 @@ class AppartementTest {
         assertEquals(differenceExcepted, appartement0.compareTo(appartement1),0.0001);
     }
 
-    @Test
-    void getInfoMoyenne() {
-        assertEquals(2.706, Appartement.getInfoMoyenne(),0.0001);
-    }
 
     @ParameterizedTest
     @ValueSource(ints = {65, 70, 100, 45, 89})

@@ -10,6 +10,20 @@ public class Logement extends ConsoCarbone{
         appartements = new ArrayList<>();
     }
 
+    public static double getInfoMoyenne() {
+        return 2.706;
+    }
+
+    public double comparerAvecMoyen() {
+        return getImpact()-getInfoMoyenne();
+    }
+
+    public static void printInfoMoyen(){
+        System.out.println( "l'empreinte carbone moyenne d'un.e français.e\n"+
+                "pour les equipements des logements : 335 kg eq CO2/an\n" +
+                "pour les constructions et les gros entretiens : 675 kg eq CO2/an\n"+
+                "pour les énergies et les utilités : 1696 kg eq CO2/an\n");
+    }
     public void addAppartement(Appartement a){ this.appartements.add(a);}
 
     public int nbAppartement(){return this.appartements.size();}
@@ -32,4 +46,9 @@ public class Logement extends ConsoCarbone{
         }
         return res;
     }
+
+    public List<Appartement> getAppartements(){
+        return this.appartements;
+    }
+
 }

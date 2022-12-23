@@ -8,16 +8,19 @@ import java.util.List;
 public class main {
     public static void main(String[] args) throws IOException {
         System.out.println("\n" +"Test Class Logement");
-        Appartement l1 = new Appartement(20, CE.A);
-        Appartement l2 = new Appartement(10,CE.B);
-        System.out.println(l1);
+        Appartement a1 = new Appartement(20, CE.A);
+        Appartement a2 = new Appartement(10,CE.B);
+        Logement logement = new Logement();
+        logement.addAppartement(a1);
+        logement.addAppartement(a2);
+        System.out.println(logement);
 
         System.out.println("\n" +"Test Class Alimentation");
-        Alimentation a1 = new Alimentation(0.5, 0.3);
-        System.out.println(a1.getImpact());
+        Alimentation al = new Alimentation(0.5, 0.3);
+        System.out.println(al.getImpact());
         Alimentation.printInfoMoyen();
 
-        int difference = a1.compareTo(l1);
+        int difference = al.compareTo(al);
         System.out.println("Écart d'émissions de carbone entre le logement et l'alimentation : "+difference);
         System.out.println("\n" +"Test Class BienConso");
         AutreBien b1 = new AutreBien(100);
@@ -25,7 +28,9 @@ public class main {
 
         System.out.println("\n" +"Test Class Transport");
         Voiture t1 = new Voiture(true, Taille.P, 100000000, 3);
-        System.out.println(t1);
+        Transport transport = new Transport();
+        transport.addVoiture(t1);
+        System.out.println(transport);
 
         System.out.println("\n"+"Test Class ServicesPublics");
         ServicesPublics sv = ServicesPublics.getServicesPublics();
@@ -39,10 +44,10 @@ public class main {
 
         BienNumerique bn= new BienNumerique();
         System.out.println("\n"+"Test Class utilisateur");
-        Utilisateur u1=new Utilisateur(a1,b1, appartements,transports,sv,h1,bn);
-        u1.addLogement(l1);
-        u1.addLogement(l2);
-        u1.addTransport(t1);
+        Utilisateur u1=new Utilisateur(al,b1, logement,transport,sv,h1,bn);
+        u1.addAppartement(a1);
+        u1.addAppartement(a2);
+        u1.addVoiture(t1);
         u1.detaillerEmpreinte();
         System.out.println("---------------------------------------------");
 

@@ -18,10 +18,6 @@ public class Voiture extends ConsoCarbone{
         this.amortissement=0;
     }
 
-    public static double getInfoMoyenne() {
-        return 1.972;
-    }
-
     public Voiture(boolean possede) {
         super();
         //TODO 此处可以允许用户输入有车后面在输入具体参数
