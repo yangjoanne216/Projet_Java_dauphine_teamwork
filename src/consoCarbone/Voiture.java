@@ -60,8 +60,7 @@ public class Voiture extends ConsoCarbone{
     public int getKilomAnnee() {
         return kilomAnnee;
     }
-    public void setKilomAnnee(int kilomAnnee) throws IOException {
-        //TODO 要有车才可以设置正数，否则抛出错误
+    public void setKilomAnnee(int kilomAnnee){
         if(!this.possede && kilomAnnee!=0) {
             throw new NoVehiculeException("Vous ne pouvez pas entrer une kilomAnnee non nulle si vous n'avez pas de voiture");
         }
@@ -72,7 +71,6 @@ public class Voiture extends ConsoCarbone{
     }
 
     public void setAmortissement(int amortissement) {
-        //TODO 要有车才可以设置正数，否则抛出错误
         this.amortissement = amortissement;
     }
 
