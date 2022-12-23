@@ -13,7 +13,6 @@ public class TextReader {
         Scanner sc = new Scanner(new File(path));
         while(sc.hasNextLine()) {
             String line = sc.nextLine();
-            // 清除前后空格
             line = line.trim();
             if(!line.isEmpty()) {
                 lines.add(line);

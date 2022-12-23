@@ -20,21 +20,12 @@ public class Voiture extends ConsoCarbone{
 
     public Voiture(boolean possede) {
         super();
-        //TODO 此处可以允许用户输入有车后面在输入具体参数
-        /*if (possede) {
-            throw new IOException("Si vous avez un véhicule, veuillez nous indiquer son modèle, la durée de conservation de ce véhicule et combien de kilomètres vous parcourez par an");
-        }*/
         this.possede = possede;
         this.taille = null;
         this.kilomAnnee=0;
         this.amortissement=0;
     }
     public Voiture(boolean possede, Taille taille, int kilomAnnee, int amortissement) {
-        //TODO 此处用户要是没车还输入了后面的参数，需要抛出异常
-        if(!possede&&(taille!=null||kilomAnnee!=0||amortissement!=0))
-        {
-            throw new RuntimeException("Si vous n’avez pas de voiture, vous n’avez pas besoin d’entrer les paramètres de Taille, kiloAnnee, amortissement");
-        }
         if(amortissement <= 0){
             throw new ArithmeticException("Le dénominateur est zéro ou la durée de conservation de votre véhicule ne peut pas être égal ou inférieur à 0");
         }
@@ -59,13 +50,10 @@ public class Voiture extends ConsoCarbone{
     public Taille getTaille() {
         return taille;
     }
-    public void setTaille(Taille taille) throws Exception {
-        //TODO 要有车才可以设置正数，否则抛出错误
+    public void setTaille(Taille taille){
         if(!possede && taille!=null){
-            throw new NoVehiculeException();
-            //throw new Exception("Vous ne pouvez pas entrer une Taille non nulle si vous n'avez pas de voiture");
+            throw new NoVehiculeException("Vous ne pouvez pas entrer une Taille non nulle si vous n'avez pas de voiture");
         }
-
         this.taille = taille;
     }
 
@@ -75,7 +63,7 @@ public class Voiture extends ConsoCarbone{
     public void setKilomAnnee(int kilomAnnee) throws IOException {
         //TODO 要有车才可以设置正数，否则抛出错误
         if(!this.possede && kilomAnnee!=0) {
-            throw new IOException("Vous ne pouvez pas entrer une  non nulle si vous n'avez pas de voiture");
+            throw new NoVehiculeException("Vous ne pouvez pas entrer une kilomAnnee non nulle si vous n'avez pas de voiture");
         }
         this.kilomAnnee = kilomAnnee;
     }

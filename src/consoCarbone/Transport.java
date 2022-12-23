@@ -39,7 +39,7 @@ public class Transport extends ConsoCarbone {
     @Override
     public String toString() {
         if(nbVoiture()==0) {
-            return "Vous possede aucune voiture\n";
+            return "Vous possédez aucune voiture\n";
         }
         String res = "";
         for (Voiture voiture : voitures) {

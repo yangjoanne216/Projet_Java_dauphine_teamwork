@@ -5,7 +5,6 @@ public abstract class ConsoCarbone implements Comparable<ConsoCarbone>   {
     protected int id;
     protected double impact;
 
-
     public ConsoCarbone() {
         this.id = nbConsoCarbone++;
     }

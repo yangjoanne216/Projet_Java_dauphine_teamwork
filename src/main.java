@@ -50,6 +50,9 @@ public class main {
         u1.addVoiture(t1);
         u1.detaillerEmpreinte();
         System.out.println("---------------------------------------------");
+        Utilisateur utxt=new Utilisateur("/Users/yangyang/Program/IntelliJ_workspace/Projet/Projet_Java_dauphine_teamwork/Data/exemple1.txt");
+        System.out.println(utxt.getRecommandation().toString());
+        System.out.println(utxt.getLogement().toString());
 
 
 

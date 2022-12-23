@@ -63,9 +63,4 @@ public class BienNumerique extends BienConso{
                       (hautNiveau_Equipement? IMPACT_NIVEAU_HAUT : IMPACT_NIVEAU_SOBRE);
         return this.impact;
     }
-
-    /*public static void main(String[] args) {
-        BienNumerique bn = new BienNumerique(false,false);
-        System.out.println(bn);
-    }*/
 }

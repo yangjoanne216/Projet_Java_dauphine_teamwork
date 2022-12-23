@@ -38,7 +38,7 @@ public class Logement extends ConsoCarbone{
 
     public String toString(){
         if(nbAppartement()==0){
-            return "Vous possede aucun appartement ";
+            return "Vous possédez aucun appartement ";
         }
         String res="";
         for (Appartement appartement : appartements) {

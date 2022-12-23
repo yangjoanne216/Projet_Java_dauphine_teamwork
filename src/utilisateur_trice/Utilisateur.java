@@ -9,8 +9,6 @@ public class Utilisateur {
     private Alimentation alimentation;
     private AutreBien autreBien;
     private Logement logement;
-    /*private Logement logement;*/
-    /*private Transport transport;*/
     private Transport transport;
     private ServicesPublics servicesPublics;
 
@@ -24,8 +22,6 @@ public class Utilisateur {
         this.autreBien = new AutreBien();
         this.logement = new Logement();
         this.transport = new Transport();
-        /*this.logement = new Logement();
-        this.transport=new Transport();*/
         this.servicesPublics = ServicesPublics.getServicesPublics();
         this.habillement = new Habillement();
         this.bienNumerique = new BienNumerique();
@@ -45,12 +41,9 @@ public class Utilisateur {
         this();
         int cursor = 0;
         try {
-            // 获得每行的东西
             String[] data = TextReader.readText(path);
-            // 获得车的数量
             int nbVoiture = Integer.parseInt(data[cursor]);
             cursor += 1;
-            // 解析每一个房子
             for(int i=cursor; i<cursor+nbVoiture; i++) {
                 String[] temp = data[i].split(",");
                 Taille taille = temp[0]=="P" ? Taille.P : Taille.G;
@@ -59,10 +52,8 @@ public class Utilisateur {
                 transport.addVoiture(new Voiture(true, taille, kiloAnnee, amortissement));
             }
             cursor += nbVoiture;
-            // 获得公寓数量
             int nbAppart = Integer.parseInt(data[cursor]);
             cursor += 1;
-            // 解析公寓
             for(int i=cursor; i<cursor+nbAppart; i++) {
                 String[] temp = data[i].split(",");
                 int surface = Integer.parseInt(temp[0]);
@@ -70,7 +61,6 @@ public class Utilisateur {
                 logement.addAppartement(new Appartement(surface, ce));
             }
             cursor += nbAppart;
-            // 解析Habillement
             String[] temp = data[cursor].split(";");
             int i=0;
             for(Categorie c : Categorie.values()) {
@@ -83,10 +73,8 @@ public class Utilisateur {
                 i++;
             }
             cursor += 1;
-            // 解析消费 Autre bien
             this.autreBien.setMontant(Double.parseDouble(data[cursor]));
             cursor += 1;
-            // 肉和菜的比例
             temp = data[cursor].split(",");
             alimentation.setTxBoeuf(Double.parseDouble(temp[0]));
             alimentation.setTxVege(Double.parseDouble(temp[1]));
