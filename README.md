@@ -52,6 +52,21 @@ java view_console/MainUI
 
 Ici, vous pouvez selectionner les actions que vous voulez faire en tapant la chiffre et entrer. 
 
+### GUI
+En fait, on a fait une interface graphique, dans le pachage `view`, mais c'est pas encore fini. il y a qu'une fonctionnement : télécharger un fichier et afficher la résumé.
+
+Si vous voulez tester, vous pouvez compiler comme:
+```bash
+javac view/MainWindow.java
+```
+et lancer :
+```bash
+java view/MainWindow
+```
+Vous allez voir une fenetre avec plusieurs boutons. Le premier bouton est pour télécharger un fichier text, vous pouvez choisir celui dan `Data/exemple.txt`, et le dernier bouton est pour afficher la résumeé.
+
+Les reste boutons n'ont pas encore les actions.
+
 ## Contact 
 Si vous avez des remarques, veuillez contacter ：
 
