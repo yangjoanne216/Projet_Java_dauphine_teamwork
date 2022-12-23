@@ -90,40 +90,21 @@ public class Utilisateur {
     }
 
     public void detaillerEmpreinte(){
-        System.out.println("Volià des informations sur votre empreinte carbon");
-        System.out.println("-------------------------------------------------");
-        System.out.println("--------------1.Alimentation---------------------");
-        System.out.println(alimentation);
-        System.out.println("--------------2.BienConsommé---------------------");
-        System.out.println(bienNumerique);
-        System.out.println(habillement);
-        System.out.println(autreBien);
-        System.out.println("----------------3.logement------------------------");
-        System.out.println(logement);
-        System.out.println("----------------4.transport------------------------");
-        System.out.println(transport);
-        System.out.println("----------------5.service public-------------------");
-        System.out.println(servicesPublics);
-        System.out.println("----------------7.habillement-------------------");
-        System.out.println(habillement);
-        System.out.println("----------------Total-------------------");
-        System.out.println("Au total, vous avez une empreinte carbone de "+String.format("%.6f",this.calculerEmpreinte())+" TCO2eq."+"\n");
-        System.out.println("--------------getRecommantation----------------");
-        System.out.println(getRecommandation());
+        System.out.println(this);
     }
 
     @Override
     public String toString() {
         String res = "Volià des informations sur votre empreinte carbon\n";
-        res += "-------------------------------------------------\n";
+        res += "---------------------------------------------------\n";
         res += "----------------1.transport------------------------\n" + transport;
-        res += "----------------2.logement------------------------\n" + logement;
-        res += "--------------3.BienConsommé---------------------\n" + bienNumerique + habillement + autreBien;
-        res += "--------------4.Alimentation---------------------\n" + alimentation;
+        res += "----------------2.logement-------------------------\n" + logement;
+        res += "--------------3.BienConsommé-----------------------\n" + bienNumerique + habillement + autreBien;
+        res += "--------------4.Alimentation-----------------------\n" + alimentation;
         res += "----------------5.service public-------------------\n" + servicesPublics;
-        res += "----------------Total-------------------\n";
-        res += "Au total, vous avez une empreinte carbone de "+String.format("%.6f",this.calculerEmpreinte())+" TCO2eq."+"\n";
-        res += "--------------Recommantation----------------\n";
+        res += "--------------------Total--------------------------\n";
+        res += String.format("Au total, vous avez une empreinte carbone de %.6f TCO2eq.\n", this.calculerEmpreinte());
+        res += "--------------Recommantation-----------------------\n";
         res += getRecommandation();
         return res;
     }

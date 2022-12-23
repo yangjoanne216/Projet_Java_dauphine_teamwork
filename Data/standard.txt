@@ -1,11 +1,11 @@
-nombre de voitures n
-型号1 年份1 公里数1
-。。。
-型号n 年份n 公里数n
-房子数n
-面积1 等级1
-。。。
-面积n 等级n
-棉衬衫 化纤衬衫 牛仔裤 棉T恤 Polo衫 化纤T恤 腈纶套头衫 化纤套头衫 棉毛衣 羊毛衫 大衣 羽绒服 风衣 化纤裙 棉裙 皮鞋 布鞋 运动鞋
-消费
-肉比例 菜比例 
+n(nombre de voitures)
+taille_1,amortissement_1,kiloannee_1
+...
+taille_n,amortissement_n,kiloannee_n
+n(nombre de l'appartement)
+superficie_1,CE_1
+...
+superficie_n,CE_n
+chemise_coton,chemise_viscose;jean_coton;T-shirt_coton,polo,T_shirt_polyester;pull_acrylique,polaire,sweat,pull_en_laine;......
+Autre_bien
+taux_beauf,taux_vegi

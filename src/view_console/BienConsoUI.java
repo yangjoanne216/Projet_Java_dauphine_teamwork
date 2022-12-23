@@ -80,34 +80,30 @@ public class BienConsoUI {
     }
 
     public void setBienNumerique() {
-        // 玩电脑多不多
-        System.out.print("你TM老玩电脑吗(T ou F):\n> ");
+        System.out.print("Vous utilisez souvent l'ordinateur? (T ou F):\n> ");
         char intensif = Utils.getUpperCase(Utils.readKey());
         while(intensif != 'T' && intensif != 'F'){
             System.out.print("(T ou F)> ");
             intensif = Utils.getUpperCase(Utils.readKey());
         }
-        // 设备高不高级
-        System.out.print("你TM电脑屌不屌(T ou F):\n> ");
+        System.out.print("Votre Ordinateur est-il de haut gamme? (T ou F):\n> ");
         char high = Utils.getUpperCase(Utils.readKey());
         while(high != 'T' && high != 'F'){
             System.out.print("(T ou F)> ");
             high = Utils.getUpperCase(Utils.readKey());
         }
-        // 新建BienConso
         BienNumerique bien = new BienNumerique(intensif=='T', high=='T');
         user.setBienNumerique(bien);
     }
 
     public void setAutreBien() {
-        // 其他东西
         System.out.print("Le montant d'autre bien:\n> ");
         double montant = Utils.readDouble();
         while(montant < 0){
             System.out.print("(la valeur soit positive)> ");
             montant = Utils.readDouble();
         }
-        // 新建BienConso
+        // créer BienConso
         AutreBien bien = new AutreBien(montant);
         user.setAutreBien(bien);
     }

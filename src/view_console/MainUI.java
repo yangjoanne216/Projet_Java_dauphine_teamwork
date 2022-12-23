@@ -30,13 +30,6 @@ public class MainUI {
         for(int i=0; i<menuTitle.length; i++) {
             res += i+". " + menuTitle[i] + ";\n";
         }
-//        res += "0. Afficher empreinte;\n";
-//        res += "1. Ajouter un transport;\n";
-//        res += "2. Ajouter le logement;\n";
-//        res += "3. Affichier tous les logement\n";
-//        res += "4. Ajouter un bien conso;\n";
-//        res += "5. Ajouter une alimentation;\n";
-//        res += "5. Ajouter une service;\n";
         res += "q pour quiter;";
         return res;
     }
@@ -118,27 +111,34 @@ public class MainUI {
         user.addAppartement(appartement);
     }
 
+    public void showBienConso() {
+        System.out.print(user.getHabillement());
+        System.out.print(user.getBienNumerique());
+        System.out.print(user.getAutreBien());
+        Utils.pressToContinue();
+    }
+
     public void showAlimentation() {
         System.out.println(user.getAlimentation());
         Utils.pressToContinue();
     }
 
     public void setAlimentation() {
-        // 牛肉比例
-        System.out.print("牛肉的比例(0~1):\n> ");
+        // Le taux de boeuf
+        System.out.print("Le taux de boeuf(0~1):\n> ");
         double txBoeuf = Utils.readDouble();
         while(txBoeuf < 0){
             System.out.print("(la valeur soit positive)> ");
             txBoeuf = Utils.readDouble();
         }
-        // 蔬菜比例
-        System.out.print("蔬菜的比例(0~1):\n> ");
+        // Le taux de Vege
+        System.out.print("Le taux de Vege(0~1):\n> ");
         double txVege = Utils.readDouble();
         while(txVege < 0){
             System.out.print("(la valeur soit positive)> ");
             txVege = Utils.readDouble();
         }
-        // 新建Alimentation
+        // créer Alimentation
         Alimentation alimentation = new Alimentation(txBoeuf,txVege);
         user.setAlimentation(alimentation);
     }
@@ -168,7 +168,7 @@ public class MainUI {
                     addLogement();
                     break;
                 case '5':
-                    System.out.println("Add 5");
+                    showBienConso();
                     break;
                 case '6':
                     bienConsoUI.start();
