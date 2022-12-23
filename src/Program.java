@@ -1,12 +1,13 @@
 import consoCarbone.*;
 import utilisateur_trice.Utilisateur;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class main {
-    public static void main(String[] args) throws IOException {
+public class Program {
+    public static void main(String[] args) {
 //        System.out.println("\n" +"Test Class Logement");
 //        Appartement a1 = new Appartement(20, CE.A);
 //        Appartement a2 = new Appartement(10,CE.B);
@@ -50,7 +51,14 @@ public class main {
 //        u1.addVoiture(t1);
 //        u1.detaillerEmpreinte();
 //        System.out.println("---------------------------------------------");
-        Utilisateur utxt=new Utilisateur("Data/exemple1.txt");
-        System.out.println(utxt);
+//        Utilisateur utxt=new Utilisateur("Data/exemple1.txt");
+        try{
+            Utilisateur utxt = new Utilisateur(args[0]);
+            System.out.println(utxt);
+        } catch (FileNotFoundException e) {
+            System.out.println("Le chemin de la fichier n'est pas valide");
+        } catch (Exception e) {
+            System.out.println("Décoder erreur");
+        }
     }
 }
