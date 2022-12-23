@@ -88,6 +88,7 @@ public class Utilisateur {
     public double calculerEmpreinte(){
         return alimentation.getImpact()+ autreBien.getImpact()+ logement.getImpact()+ transport.getImpact()+servicesPublics.getImpact()+habillement.getImpact();
     }
+
     public void detaillerEmpreinte(){
         System.out.println("Volià des informations sur votre empreinte carbon");
         System.out.println("-------------------------------------------------");
@@ -111,7 +112,21 @@ public class Utilisateur {
         System.out.println(getRecommandation());
     }
 
-
+    @Override
+    public String toString() {
+        String res = "Volià des informations sur votre empreinte carbon\n";
+        res += "-------------------------------------------------\n";
+        res += "----------------1.transport------------------------\n" + transport;
+        res += "----------------2.logement------------------------\n" + logement;
+        res += "--------------3.BienConsommé---------------------\n" + bienNumerique + habillement + autreBien;
+        res += "--------------4.Alimentation---------------------\n" + alimentation;
+        res += "----------------5.service public-------------------\n" + servicesPublics;
+        res += "----------------Total-------------------\n";
+        res += "Au total, vous avez une empreinte carbone de "+String.format("%.6f",this.calculerEmpreinte())+" TCO2eq."+"\n";
+        res += "--------------Recommantation----------------\n";
+        res += getRecommandation();
+        return res;
+    }
 
     public Alimentation getAlimentation() {
         return alimentation;
